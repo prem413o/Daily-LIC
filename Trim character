@@ -1,0 +1,31 @@
+import java.util.*;
+class Solution {
+    public boolean isvowel(Character ch){
+        if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public String trimTrailingVowels(String s) {
+        Deque<Character> q=new LinkedList<>();
+        StringBuilder sb=new StringBuilder("");
+        
+        for(int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+            q.addLast(c);
+        }
+        while(!q.isEmpty()){
+            if(!isvowel(q.peekLast())){
+                break;
+            }
+            if(isvowel(q.peekLast())){
+                q.removeLast();
+            }
+        }
+        while(!q.isEmpty()){
+            sb.append(q.removeFirst());
+        }
+        return sb.toString();
+    }
+}©leetcode
