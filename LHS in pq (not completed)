@@ -1,0 +1,35 @@
+import java.util.*;
+class Solution {
+    public static int findLHS(int[] nums) {
+        PriorityQueue<Integer>pq=new PriorityQueue<>(Comparator.reverseOrder());
+        for(int i=0;i<nums.length;i++){
+            pq.add(nums[i]);
+        }
+        
+        int count=0;
+        int max=Integer.MIN_VALUE;
+        while(pq.size()>1){
+            int first=pq.remove();
+            int second=pq.remove();
+            
+            if(first==second){
+                pq.add(second);
+                max=second;
+                count++;
+                
+            }else if(first-second==1){
+                max=Math.max(first,second);
+                pq.add(max);
+                count++;
+            }
+        }
+        
+        int len=count++;
+        return len;
+    }
+    public static void main(String args[]){
+        int nums[]={1,2,3,4};
+        System.out.println(findLHS(nums));
+        
+    }
+}
