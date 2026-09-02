@@ -1,0 +1,34 @@
+import java.util.*;
+class Reverse {
+    public static String reverseVowels(String s) {
+        String vowel="aeiouAEIOU";
+        HashSet<Character>set=new HashSet<>();
+        for(int i=0;i<vowel.length();i++){
+            set.add(vowel.charAt(i));
+        }
+
+        Stack<Character>m=new Stack<>();
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(set.contains(ch)){
+                m.push(ch);
+            }
+        }
+
+        StringBuilder sb=new StringBuilder(" ");
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(set.contains(ch)){
+                sb.append(m.pop());
+            }else{
+                sb.append(ch);
+            }
+        }
+        return sb.toString();
+    }
+    public static void main(String args[]){
+        String s="leetcode";
+        System.out.println(reverseVowels(s));
+
+    }
+}
