@@ -1,0 +1,55 @@
+import java.util.*;
+class Solution {
+    public static int helper(List<Integer>nums,int n){
+      Deque<Integer>q=new LinkedList<>();
+      int sum=0;
+      for(int i=0;i<n;i++){
+        sum+=nums.get(i);
+        q.addLast(nums.get(i));
+      }
+
+      int temp=Integer.MAX_VALUE;
+      if(sum>0){
+        temp=Math.min(temp,sum);
+      }
+      
+      for(int i=n;i<nums.size();i++){
+        int m=q.removeFirst();
+        sum-=m;
+        q.addLast(nums.get(i));
+        sum+=nums.get(i);
+
+        if(sum>0){
+          temp=Math.min(temp,sum);
+        }
+
+        
+      }
+      
+      return temp;
+
+    }
+    public static int minimumSumSubarray(List<Integer> nums, int l, int r) {
+        int temp=Integer.MAX_VALUE;
+        for(int i=l;i<=r;i++){
+          int t1=helper(nums,i);
+          temp=Math.min(temp,t1);
+        }
+        
+        if(temp==Integer.MAX_VALUE){
+          return -1;
+        }
+        return temp;
+
+    }
+    public static void main(String args[]){
+      List<Integer>nums=new ArrayList<>();
+      nums.add(1);
+      nums.add(2);
+      nums.add(3);
+      nums.add(4);
+      int l=2;
+      int r=4;
+      System.out.println(minimumSumSubarray(nums,l,r));
+    }
+}
