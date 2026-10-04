@@ -1,4 +1,5 @@
 import java.util.*;
+//hello fried//
 class Solution {
     public static int minRotations(String s) {
         int result=0;
